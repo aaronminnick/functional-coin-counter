@@ -70,3 +70,29 @@ function countCoinsObj(obj) {
 
 //wrapper to use decimal input
 const countFromDecimal = (decimalAmount) => countCoinsObj({amount: Math.round(decimalAmount*100)});
+
+//closurs, recursion, NO objects (no state)
+function countCoinsNoObj(amount) {
+  if (isNaN(amount)) {
+    return;
+  }
+  else if (amount >= 25) {
+    const quarters = quarter(amount);
+    return `${quarters || 0} quarters, ` + countCoinsNoObj(amount - quarters*25);
+  }
+  else if (amount >= 10) {
+    const dimes = dime(amount);
+    return `${dimes || 0} dimes, ` + countCoinsNoObj(amount - dimes*10);
+  }
+  else if (amount >= 5) {
+    const nickels = nickel(amount);
+    return `${nickels || 0} nickels, ` + countCoinsNoObj(amount - nickels*25);
+  }
+  else if (amount >= 1)
+  {
+    return `and ${amount} pennies.`
+  }
+}
+
+// wrapper for decimal input
+const countCoins = (decimalAmount) => countCoinsNoObj(Math.round(decimalAmount*100));
