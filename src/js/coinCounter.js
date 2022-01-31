@@ -86,7 +86,7 @@ function countCoinsNoObj(amount) {
   }
   else if (amount >= 5) {
     const nickels = nickel(amount);
-    return `${nickels || 0} nickels, ` + countCoinsNoObj(amount - nickels*25);
+    return `${nickels || 0} nickels, ` + countCoinsNoObj(amount - nickels*5);
   }
   else if (amount >= 1)
   {
